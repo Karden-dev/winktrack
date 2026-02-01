@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mon Espace - Wink Track</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+</head>
+<body class="dashboard-body">
+
+    <nav class="navbar">
+        <div class="brand-small"><span class="dot"></span> WINK TRACK</div>
+        <button id="btn-logout" class="btn-text">Déconnexion</button>
+    </nav>
+
+    <div class="container dashboard-container">
+        
+        <div class="card profile-card">
+            <div class="profile-row">
+                <div class="profile-info">
+                    <h2 id="rider-name">Chargement...</h2>
+                    <span class="badge-status" id="status-badge">🟢 En Ligne</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-online" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-deliveries">-</span>
+                    <span class="stat-label">Livraisons</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-rating">-</span>
+                    <span class="stat-label">Note</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-days">-</span>
+                    <span class="stat-label">Jours restants</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert-expired" class="alert-box hidden">
+            <p>⚠️ Votre abonnement a expiré. Vos clients ne peuvent plus utiliser votre lien.</p>
+            <button id="btn-renew" class="btn-renew">Renouveler (150 FCFA)</button>
+        </div>
+
+        <div class="section-title">MON PARRAINAGE (GAGNEZ DES SEMAINES)</div>
+        <div class="card" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <p style="margin:0; opacity: 0.9; font-size: 12px;">MON CODE PROMO</p>
+                    <h2 id="referral-code-display" style="margin: 5px 0; font-size: 24px; letter-spacing: 2px;">...</h2>
+                </div>
+                <div style="text-align: right;">
+                    <span id="referral-count" style="font-size: 20px; font-weight: 800;">0</span>
+                    <p style="margin:0; font-size: 11px;">Amis invités</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.9;">
+                🎁 1 ami abonné = 1 semaine offerte pour vous !
+            </p>
+            <button id="btn-share-referral" style="background: white; color: #059669; border:none; width:100%; padding:10px; border-radius:8px; font-weight:700; margin-top:10px; cursor:pointer;">
+                Inviter un ami sur WhatsApp 💬
+            </button>
+        </div>
+
+        <div class="section-title">MON LIEN DE LOCALISATION</div>
+        <div class="card link-card">
+            <p class="helper-text" style="font-size:12px; color:#6B7280; margin-bottom:10px;">Lien à envoyer au client :</p>
+            <div class="input-group">
+                <input type="text" id="magic-link" readonly value="...">
+                <button id="btn-copy">Copier</button>
+            </div>
+            <button id="btn-share-wa" class="btn-whatsapp">
+                Envoyer au client 📤
+            </button>
+        </div>
+
+        <div class="section-title">MON MESSAGE D'ACCUEIL</div>
+        <div class="card">
+            <p class="helper-text" style="font-size:12px; color:#6B7280; margin-bottom:10px;">Ce message s'affiche sur le WhatsApp du client :</p>
+            <textarea id="custom-msg" rows="3" placeholder="Ex: Salut, envoie ta position..."></textarea>
+            <button id="btn-save-msg" class="btn-small">Enregistrer</button>
+        </div>
+
+        <div class="section-title">OUTILS</div>
+        <div class="tools-grid">
+            <div class="tool-card" onclick="alert('Bientôt disponible : Gestion de votre caisse journalière.')">
+                <span>💰</span>
+                <p>Ma Caisse</p>
+            </div>
+            <div class="tool-card" onclick="alert('Bientôt disponible : Carte des zones chaudes.')">
+                <span>🗺️</span>
+                <p>Zones</p>
+            </div>
+            <div class="tool-card" onclick="window.location.href='https://wa.me/237600000000'">
+                <span>🆘</span>
+                <p>Support</p>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
