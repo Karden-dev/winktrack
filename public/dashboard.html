@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mon Espace - Wink Track</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    </head>
+<body class="dashboard-body">
+
+    <nav class="navbar">
+        <div class="brand-small"><span class="dot"></span> WINK TRACK</div>
+        <button id="btn-logout" class="btn-text">Déconnexion</button>
+    </nav>
+
+    <div class="container dashboard-container">
+        
+        <div class="card profile-card">
+            <div class="profile-row">
+                <div class="profile-info">
+                    <h2 id="rider-name">Chargement...</h2>
+                    <span class="badge-status" id="status-badge">🟢 En Ligne</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="toggle-online" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-deliveries">-</span>
+                    <span class="stat-label">Livraisons</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-rating">-</span>
+                    <span class="stat-label">Note</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-val" id="stat-days">-</span>
+                    <span class="stat-label">Jours restants</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert-expired" class="alert-box hidden">
+            <p>⚠️ Votre abonnement a expiré. Vos clients ne peuvent plus utiliser votre lien.</p>
+            <button id="btn-renew" class="btn-renew">Renouveler (150 FCFA)</button>
+        </div>
+
+        <div class="section-title">MON PARRAINAGE (GAGNEZ DES SEMAINES)</div>
+        <div class="card" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <p style="margin:0; opacity: 0.9; font-size: 12px;">MON CODE PROMO</p>
+                    <h2 id="referral-code-display" style="margin: 5px 0; font-size: 24px; letter-spacing: 2px;">...</h2>
+                </div>
+                <div style="text-align: right;">
+                    <span id="referral-count" style="font-size: 20px; font-weight: 800;">0</span>
+                    <p style="margin:0; font-size: 11px;">Amis invités</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.9;">
+                🎁 1 ami abonné = 3 Jours offerts pour vous !
+            </p>
+            <button id="btn-share-referral" style="background: white; color: #059669; border:none; width:100%; padding:10px; border-radius:8px; font-weight:700; margin-top:10px; cursor:pointer;">
+                Inviter un ami sur WhatsApp 💬
+            </button>
+        </div>
+
+        <div class="section-title">LOCALISER UN CLIENT</div>
+        <div class="card link-card">
+            <p class="helper-text" style="font-size:13px; color:#374151; margin-bottom:15px; font-weight: 500;">
+                Envoyez ce message au client pour obtenir sa position GPS exacte :
+            </p>
+            
+            <div class="message-preview">
+                "Bonjour, pour faciliter la livraison, confirmez votre position via ce lien sécurisé : <br>
+                <span id="link-preview" style="color:#2563EB; font-weight:600;">...</span>"
+            </div>
+
+            <button id="btn-share-wa" class="btn-whatsapp">
+                Envoyer sur WhatsApp 📤
+            </button>
+            
+            <div class="action-row">
+                <button id="btn-copy-msg" class="btn-secondary">Copier Message</button>
+                <button id="btn-copy-link" class="btn-secondary">Copier Lien seul</button>
+                <input type="text" id="magic-link" readonly style="position:absolute; left:-9999px;">
+                <input type="hidden" id="custom-msg"> 
+            </div>
+            <button id="btn-save-msg" class="hidden">Save</button>
+        </div>
+
+        <div class="section-title">OUTILS</div>
+        <div class="tools-grid">
+            <div class="tool-card" onclick="alert('Bientôt disponible.')">
+                <span>💰</span>
+                <p>Ma Caisse</p>
+            </div>
+            <div class="tool-card" onclick="alert('Bientôt disponible.')">
+                <span>🗺️</span>
+                <p>Zones</p>
+            </div>
+            <div class="tool-card" onclick="window.location.href='https://wa.me/237674327482'">
+                <span>🆘</span>
+                <p>Support</p>
+            </div>
+        </div>
+
+        <br><br>
+    </div>
+
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content card" style="padding: 30px 20px;">
+            <span id="close-modal" class="close-btn">&times;</span>
+            
+            <div id="payment-step-1">
+                <h2 class="modal-title" style="margin-bottom: 5px;">Renouvellement Pro</h2>
+                <p class="modal-desc">1 Semaine • Accès complet</p>
+                
+                <div class="price-badge" style="background:#ECFDF5; color:#10B981; font-weight:800; font-size:24px; padding:12px 30px; border-radius:12px; display:inline-block; margin: 15px 0 25px 0;">
+                    150 FCFA
+                </div>
+
+                <div class="input-group-vertical" style="text-align: left;">
+                    <label style="font-weight: 600; color:#374151;">Numéro Mobile Money</label>
+                    <input type="tel" id="pay-phone" placeholder="ex: 699..." style="font-size: 20px; letter-spacing: 1px; font-weight: 700; text-align:center; padding: 15px;">
+                </div>
+
+                <button id="btn-pay-confirm" class="btn-primary" style="background: #111827; margin-top: 10px;">
+                    🔒 Payer 150 FCFA
+                </button>
+                
+                <div style="display:flex; justify-content:center; gap:10px; margin-top:25px; opacity:0.8;">
+                    <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:20px; padding: 5px 12px; font-size:10px; font-weight:600; color:#6B7280; display:flex; align-items:center; gap:4px;">
+                        🔒 SSL Sécurisé
+                    </div>
+                    <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:20px; padding: 5px 12px; font-size:10px; font-weight:600; color:#6B7280; display:flex; align-items:center; gap:4px;">
+                        🛡️ Campay
+                    </div>
+                    <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:20px; padding: 5px 12px; font-size:10px; font-weight:600; color:#6B7280; display:flex; align-items:center; gap:4px;">
+                        ⚡ Instantané
+                    </div>
+                </div>
+            </div>
+
+            <div id="payment-step-loading" class="hidden" style="text-align:center; padding: 20px 0;">
+                <div class="spinner" style="border-color:#E5E7EB; border-top-color:#10B981; width:50px; height:50px; border-width:4px;"></div>
+                <h3 style="color:#111827; margin:20px 0 5px 0;">Vérifiez votre téléphone</h3>
+                <p style="color:#4B5563; font-size:15px; margin:0;">Tapez votre code PIN pour valider.</p>
+                <div style="margin-top:25px; font-size:12px; color:#6B7280; background:#F3F4F6; padding:12px; border-radius:8px;">
+                    <span style="display:block; margin-bottom:4px; font-weight:bold;">Ne fermez pas cette fenêtre...</span>
+                    Détection automatique en cours.
+                </div>
+            </div>
+
+            <div id="payment-step-success" class="hidden" style="text-align:center; padding: 20px 0;">
+                <div style="font-size:70px; margin-bottom:10px;">🎉</div>
+                <h3 style="color:#10B981; margin:10px 0;">Paiement Réussi !</h3>
+                <p style="color:#4B5563; font-size:14px;">Votre abonnement est activé.</p>
+                <button onclick="document.getElementById('payment-modal').classList.add('hidden')" class="btn-small" style="background:#F3F4F6; color:#374151; margin-top:20px; padding: 10px 20px;">Fermer</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

