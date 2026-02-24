@@ -1,0 +1,29 @@
+{
+  "name": "wink-track-backend",
+  "version": "1.0.0",
+  "description": "Système de tracking GPS et paiement pour livreurs",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "WinkDev",
+  "license": "ISC",
+  "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.4.2",
+    "axios": "^1.13.5",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "firebase-admin": "^13.6.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "mysql2": "^3.16.3",
+    "socket.io": "^4.8.3",
+    "uuid": "^13.0.0"
+  }
+}
